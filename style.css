@@ -1,0 +1,127 @@
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: Arial, sans-serif;
+line-height: 1.6;
+color: #222;
+background: #ffffff;
+}
+
+.container {
+width: 90%;
+max-width: 1000px;
+margin: 0 auto;
+}
+
+.hero {
+background: linear-gradient(135deg, #1f2937, #374151);
+color: white;
+padding: 80px 0;
+text-align: center;
+}
+
+.hero h1 {
+font-size: 2.5rem;
+margin-bottom: 10px;
+}
+
+.subtitle {
+font-size: 1.2rem;
+margin-bottom: 20px;
+color: #d1d5db;
+}
+
+.hero p {
+max-width: 700px;
+margin: 0 auto 20px;
+}
+
+.buttons {
+margin-top: 25px;
+}
+
+.btn {
+display: inline-block;
+text-decoration: none;
+padding: 12px 22px;
+border-radius: 8px;
+margin: 8px;
+font-weight: bold;
+}
+
+.btn.primary {
+background: #2563eb;
+color: white;
+}
+
+.btn.secondary {
+background: #10b981;
+color: white;
+}
+
+.section {
+padding: 60px 0;
+}
+
+.section.alt {
+background: #f3f4f6;
+}
+
+.section h2 {
+margin-bottom: 20px;
+font-size: 2rem;
+color: #111827;
+}
+
+.section p {
+margin-bottom: 15px;
+}
+
+.services,
+.areas {
+padding-left: 20px;
+}
+
+.services li,
+.areas li {
+margin-bottom: 10px;
+}
+
+.contact a {
+color: #2563eb;
+text-decoration: none;
+}
+
+.note {
+color: #666;
+font-style: italic;
+}
+
+footer {
+background: #111827;
+color: white;
+text-align: center;
+padding: 25px 0;
+font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+.hero h1 {
+font-size: 2rem;
+}
+
+.section h2 {
+font-size: 1.6rem;
+}
+
+.btn {
+display: block;
+width: 100%;
+max-width: 280px;
+margin: 10px auto;
+}
+}
