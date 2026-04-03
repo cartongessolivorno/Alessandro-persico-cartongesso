@@ -5,15 +5,601 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alessandro Persico Cartongesso | Livorno</title>
   <meta name="description" content="Lavori in cartongesso a Livorno e provincia. Pareti divisorie, controsoffitti, velette e soluzioni su misura con oltre 40 anni di esperienza.">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --bg:#f5f0eb;
+      --bg-alt:#ece5dc;
+      --white:#ffffff;
+      --dark:#1a1612;
+      --dark-soft:#2d2520;
+      --text:#4a413a;
+      --muted:#8a7e74;
+      --primary:#b8860b;
+      --primary-light:#d4a828;
+      --primary-glow:rgba(184,134,11,0.15);
+      --accent:#1a1612;
+      --border:rgba(26,22,18,0.08);
+      --border-light:rgba(184,134,11,0.18);
+      --shadow:0 8px 40px rgba(26,22,18,0.07);
+      --shadow-lg:0 20px 60px rgba(26,22,18,0.12);
+      --radius:16px;
+      --radius-lg:24px;
+      --font-display:'DM Serif Display',Georgia,serif;
+      --font-body:'Outfit',sans-serif;
+    }
+
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:var(--font-body);
+      line-height:1.65;
+      color:var(--text);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
+
+    .container{width:90%;max-width:1140px;margin:0 auto}
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(32px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes fadeIn{
+      from{opacity:0}
+      to{opacity:1}
+    }
+    @keyframes scaleIn{
+      from{opacity:0;transform:scale(0.92)}
+      to{opacity:1;transform:scale(1)}
+    }
+    @keyframes slideRight{
+      from{opacity:0;transform:translateX(-30px)}
+      to{opacity:1;transform:translateX(0)}
+    }
+    @keyframes shimmer{
+      0%{background-position:-200% 0}
+      100%{background-position:200% 0}
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(32px);
+      transition:opacity 0.7s ease,transform 0.7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ─── HERO ─── */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(160deg, rgba(26,22,18,0.88) 0%, rgba(45,37,32,0.78) 50%, rgba(184,134,11,0.35) 100%),
+        url("lavoro-1.jpeg") center/cover no-repeat;
+      color:white;
+      padding:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      top:-50%;right:-30%;
+      width:80vw;height:80vw;
+      background:radial-gradient(circle,rgba(184,134,11,0.12) 0%,transparent 70%);
+      pointer-events:none;
+    }
+
+    .hero::after{
+      content:'';
+      position:absolute;
+      bottom:0;left:0;right:0;
+      height:120px;
+      background:linear-gradient(to top,var(--bg),transparent);
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;z-index:2;
+      padding:120px 0 100px;
+      text-align:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      margin-bottom:24px;
+      padding:10px 20px;
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(8px);
+      color:rgba(255,255,255,0.8);
+      font-size:0.85rem;
+      font-weight:500;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      animation:fadeIn 0.8s ease both;
+    }
+
+    .eyebrow::before{
+      content:'';
+      width:6px;height:6px;
+      border-radius:50%;
+      background:var(--primary-light);
+      animation:float 2.5s ease-in-out infinite;
+    }
+
+    .hero h1{
+      font-family:var(--font-display);
+      font-size:clamp(2.4rem,5.5vw,4.2rem);
+      line-height:1.08;
+      margin-bottom:20px;
+      font-weight:400;
+      letter-spacing:-0.02em;
+      animation:fadeUp 0.9s ease both 0.15s;
+    }
+
+    .subtitle{
+      max-width:620px;margin:0 auto;
+      font-size:1.1rem;
+      color:rgba(255,255,255,0.72);
+      font-weight:300;
+      line-height:1.7;
+      animation:fadeUp 0.9s ease both 0.3s;
+    }
+
+    .buttons{
+      margin-top:36px;
+      display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+      animation:fadeUp 0.9s ease both 0.45s;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      text-decoration:none;
+      padding:15px 30px;
+      border-radius:12px;
+      font-weight:600;
+      font-size:0.95rem;
+      font-family:var(--font-body);
+      letter-spacing:0.3px;
+      transition:all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+      cursor:pointer;
+      border:none;
+    }
+
+    .btn.primary{
+      background:var(--primary);
+      color:white;
+      box-shadow:0 8px 28px rgba(184,134,11,0.35);
+    }
+    .btn.primary:hover{
+      background:var(--primary-light);
+      transform:translateY(-3px);
+      box-shadow:0 12px 36px rgba(184,134,11,0.45);
+    }
+
+    .btn.secondary{
+      background:rgba(255,255,255,0.1);
+      color:white;
+      border:1px solid rgba(255,255,255,0.2);
+      backdrop-filter:blur(6px);
+    }
+    .btn.secondary:hover{
+      background:rgba(255,255,255,0.18);
+      transform:translateY(-3px);
+    }
+
+    .hero-info{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:56px;
+      animation:fadeUp 0.9s ease both 0.6s;
+    }
+
+    .info-box{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:16px;
+      padding:24px 20px;
+      backdrop-filter:blur(10px);
+      transition:all 0.35s ease;
+    }
+    .info-box:hover{
+      background:rgba(255,255,255,0.1);
+      border-color:rgba(184,134,11,0.3);
+      transform:translateY(-3px);
+    }
+
+    .info-box strong{
+      display:block;
+      font-family:var(--font-display);
+      font-size:1.2rem;
+      color:#fff;
+      margin-bottom:4px;
+    }
+    .info-box span{
+      color:rgba(255,255,255,0.6);
+      font-size:0.88rem;
+      font-weight:300;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section{padding:100px 0}
+    .section.alt{background:var(--bg-alt)}
+
+    .section-tag{
+      color:var(--primary);
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:2.5px;
+      font-size:0.78rem;
+      margin-bottom:12px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .section-tag::before{
+      content:'';
+      width:28px;height:2px;
+      background:var(--primary);
+      border-radius:2px;
+    }
+
+    .section h2{
+      font-family:var(--font-display);
+      font-size:clamp(1.8rem,3.5vw,2.6rem);
+      line-height:1.15;
+      color:var(--dark);
+      margin-bottom:20px;
+      font-weight:400;
+    }
+
+    .section p{margin-bottom:14px}
+
+    /* ─── ABOUT ─── */
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.3fr 0.85fr;
+      gap:40px;
+      align-items:start;
+    }
+
+    .about-text p{
+      font-size:1.02rem;
+      color:var(--text);
+    }
+
+    .about-card{
+      background:var(--white);
+      padding:32px;
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+      position:relative;
+      overflow:hidden;
+    }
+    .about-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--primary),var(--primary-light),var(--primary));
+    }
+
+    .about-card h3{
+      font-family:var(--font-display);
+      margin-bottom:18px;
+      color:var(--dark);
+      font-size:1.25rem;
+      font-weight:400;
+    }
+
+    .about-card ul{
+      list-style:none;
+      padding:0;
+    }
+
+    .about-card li{
+      position:relative;
+      padding:10px 0 10px 28px;
+      border-bottom:1px solid var(--border);
+      font-size:0.95rem;
+      color:var(--text);
+    }
+    .about-card li:last-child{border-bottom:none}
+
+    .about-card li::before{
+      content:'';
+      position:absolute;
+      left:0;top:50%;transform:translateY(-50%);
+      width:8px;height:8px;
+      background:var(--primary);
+      border-radius:50%;
+    }
+
+    /* ─── SERVICES ─── */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:32px;
+    }
+
+    .service-card{
+      background:var(--white);
+      border-radius:var(--radius-lg);
+      padding:30px 26px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+      transition:all 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+      position:relative;
+      overflow:hidden;
+    }
+    .service-card::after{
+      content:'';
+      position:absolute;
+      bottom:0;left:0;right:0;
+      height:0;
+      background:linear-gradient(to top,var(--primary-glow),transparent);
+      transition:height 0.35s ease;
+    }
+    .service-card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow-lg);
+      border-color:var(--border-light);
+    }
+    .service-card:hover::after{height:60%}
+
+    .service-card h3{
+      font-family:var(--font-display);
+      color:var(--dark);
+      margin-bottom:10px;
+      font-size:1.15rem;
+      font-weight:400;
+      position:relative;z-index:1;
+    }
+    .service-card p{
+      font-size:0.92rem;
+      color:var(--muted);
+      line-height:1.6;
+      position:relative;z-index:1;
+    }
+
+    /* ─── AREA ─── */
+    .area-grid{
+      display:grid;
+      grid-template-columns:1.2fr 0.9fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .areas-box{
+      display:flex;flex-wrap:wrap;gap:10px;
+      align-content:start;
+    }
+
+    .areas-box span{
+      background:var(--white);
+      color:var(--dark-soft);
+      padding:12px 22px;
+      border-radius:999px;
+      box-shadow:var(--shadow);
+      font-weight:500;
+      font-size:0.92rem;
+      border:1px solid var(--border);
+      transition:all 0.3s ease;
+    }
+    .areas-box span:hover{
+      border-color:var(--primary);
+      color:var(--primary);
+      transform:translateY(-2px);
+    }
+
+    /* ─── GALLERY ─── */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:32px;
+    }
+
+    .gallery-item{
+      position:relative;
+      overflow:hidden;
+      border-radius:var(--radius);
+      aspect-ratio:4/3;
+      cursor:pointer;
+    }
+
+    .gallery-item img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .gallery-item::after{
+      content:'';
+      position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(26,22,18,0.5) 0%,transparent 50%);
+      opacity:0;
+      transition:opacity 0.35s ease;
+    }
+
+    .gallery-item:hover img{transform:scale(1.08)}
+    .gallery-item:hover::after{opacity:1}
+
+    /* ─── CONTACT ─── */
+    .contact-section{
+      background:linear-gradient(180deg,var(--bg) 0%,var(--bg-alt) 100%);
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1.2fr 0.9fr;
+      gap:40px;
+      align-items:start;
+    }
+
+    .contact-card-wrapper{
+      background:var(--white);
+      padding:40px;
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-lg);
+      border:1px solid var(--border);
+    }
+
+    .contact-info{
+      background:var(--dark);
+      color:white;
+      padding:40px;
+      border-radius:var(--radius-lg);
+      position:relative;
+      overflow:hidden;
+    }
+    .contact-info::before{
+      content:'';
+      position:absolute;
+      top:-40%;right:-30%;
+      width:60%;height:100%;
+      background:radial-gradient(circle,rgba(184,134,11,0.15),transparent 70%);
+    }
+
+    .contact-info p{
+      margin-bottom:16px;
+      position:relative;z-index:1;
+      font-size:0.95rem;
+    }
+    .contact-info strong{
+      font-family:var(--font-display);
+      font-size:1.3rem;
+      font-weight:400;
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .contact-info a{
+      color:var(--primary-light);
+      text-decoration:none;
+      font-weight:500;
+      transition:color 0.2s;
+    }
+    .contact-info a:hover{color:#fff}
+
+    .contact-info .location{
+      display:flex;align-items:center;gap:8px;
+      color:rgba(255,255,255,0.6);
+      font-weight:300;
+    }
+
+    /* ─── FOOTER ─── */
+    footer{
+      background:var(--dark);
+      color:rgba(255,255,255,0.45);
+      text-align:center;
+      padding:40px 0;
+      font-size:0.88rem;
+    }
+
+    .footer-content p{margin:0;line-height:2}
+
+    .footer-content strong{
+      color:rgba(255,255,255,0.8);
+      font-family:var(--font-display);
+      font-weight:400;
+      font-size:1.05rem;
+    }
+
+    footer a{
+      color:var(--primary-light);
+      text-decoration:none;
+      transition:color 0.2s;
+    }
+    footer a:hover{color:#fff}
+
+    .footer-divider{
+      width:40px;height:2px;
+      background:var(--primary);
+      margin:16px auto;
+      border-radius:2px;
+      opacity:0.5;
+    }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox{
+      display:none;
+      position:fixed;inset:0;z-index:1000;
+      background:rgba(26,22,18,0.92);
+      backdrop-filter:blur(12px);
+      align-items:center;justify-content:center;
+      cursor:pointer;
+      animation:fadeIn 0.25s ease;
+    }
+    .lightbox.active{display:flex}
+    .lightbox img{
+      max-width:90vw;max-height:85vh;
+      object-fit:contain;
+      border-radius:12px;
+      box-shadow:0 20px 80px rgba(0,0,0,0.5);
+      animation:scaleIn 0.3s ease;
+    }
+    .lightbox-close{
+      position:absolute;top:24px;right:28px;
+      color:white;font-size:2rem;
+      cursor:pointer;
+      opacity:0.6;transition:opacity 0.2s;
+      font-weight:300;
+      font-family:var(--font-body);
+    }
+    .lightbox-close:hover{opacity:1}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:900px){
+      .hero-info,
+      .about-grid,
+      .area-grid,
+      .services-grid,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:600px){
+      .hero-content{padding:100px 0 80px}
+      .section{padding:72px 0}
+      .btn{
+        display:flex;justify-content:center;
+        width:100%;max-width:300px;
+        margin:0 auto;
+      }
+      .buttons{flex-direction:column;align-items:center}
+      .gallery{grid-template-columns:1fr}
+      .gallery-item{aspect-ratio:16/10}
+      .contact-info,.contact-card-wrapper{padding:28px}
+    }
+  </style>
 </head>
 <body>
 
 <header class="hero">
-  <div class="overlay"></div>
   <div class="container hero-content">
     <p class="eyebrow">Cartongesso • Livorno e provincia</p>
-    <h1>Alessandro Persico Cartongesso</h1>
+    <h1>Alessandro Persico<br>Cartongesso</h1>
     <p class="subtitle">
       Pareti divisorie, controsoffitti, velette e soluzioni su misura
       per abitazioni, negozi e ambienti professionali.
@@ -45,7 +631,7 @@
 
 <section class="section">
   <div class="container about-grid">
-    <div>
+    <div class="about-text reveal">
       <p class="section-tag">Chi sono</p>
       <h2>Esperienza, precisione e serietà</h2>
       <p>
@@ -62,7 +648,7 @@
       </p>
     </div>
 
-    <div class="about-card">
+    <div class="about-card reveal" style="transition-delay:0.15s">
       <h3>Perché scegliermi</h3>
       <ul>
         <li>Oltre 40 anni di esperienza</li>
@@ -77,49 +663,43 @@
 
 <section class="section alt">
   <div class="container">
-    <p class="section-tag">Servizi</p>
-    <h2>Cosa realizzo</h2>
+    <div class="reveal">
+      <p class="section-tag">Servizi</p>
+      <h2>Cosa realizzo</h2>
+    </div>
 
     <div class="services-grid">
-
-      <div class="service-card">
+      <div class="service-card reveal" style="transition-delay:0.05s">
         <h3>Pareti divisorie</h3>
         <p>Soluzioni pratiche e pulite per dividere gli spazi in modo funzionale.</p>
       </div>
-
-      <div class="service-card">
+      <div class="service-card reveal" style="transition-delay:0.1s">
         <h3>Controsoffitti</h3>
         <p>Strutture eleganti e moderne per migliorare estetica e organizzazione degli ambienti.</p>
       </div>
-
-      <div class="service-card">
+      <div class="service-card reveal" style="transition-delay:0.15s">
         <h3>Velette e abbassamenti</h3>
         <p>Ideali per rifinire gli interni e valorizzare illuminazione e design.</p>
       </div>
-
-      <div class="service-card">
+      <div class="service-card reveal" style="transition-delay:0.2s">
         <h3>Nicchie decorative</h3>
         <p>Elementi su misura per dare personalità e ordine agli spazi.</p>
       </div>
-
-      <div class="service-card">
+      <div class="service-card reveal" style="transition-delay:0.25s">
         <h3>Contropareti</h3>
         <p>Soluzioni funzionali per migliorare la resa degli ambienti interni.</p>
       </div>
-
-      <div class="service-card">
+      <div class="service-card reveal" style="transition-delay:0.3s">
         <h3>Lavori per case e attività</h3>
         <p>Interventi per abitazioni, negozi, uffici e altri ambienti professionali.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container area-grid">
-
-    <div>
+    <div class="reveal">
       <p class="section-tag">Dove lavoro</p>
       <h2>Opero a Livorno e nelle zone limitrofe</h2>
       <p>
@@ -128,7 +708,7 @@
       </p>
     </div>
 
-    <div class="areas-box">
+    <div class="areas-box reveal" style="transition-delay:0.1s">
       <span>Livorno</span>
       <span>Pisa</span>
       <span>Collesalvetti</span>
@@ -136,34 +716,33 @@
       <span>Cecina</span>
       <span>Zone limitrofe</span>
     </div>
-
   </div>
 </section>
 
 <section class="section alt">
   <div class="container">
-    <p class="section-tag">Galleria</p>
-    <h2>Alcuni lavori realizzati</h2>
-
-    <div class="gallery">
-      <img src="WhatsApp Image 2026-03-15 at 20.15.05.jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 1">
-      <img src="WhatsApp Image 2026-03-15 at 20.15.06.jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 2">
-      <img src="WhatsApp Image 2026-03-15 at 20.15.06 (1).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 3">
-      <img src="WhatsApp Image 2026-03-15 at 20.15.06 (3).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 4">
-      <img src="WhatsApp Image 2026-03-15 at 20.15.06 (4).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 5">
-      <img src="WhatsApp Image 2026-03-15 at 20.15.06 (5).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 6">
-      <img src="WhatsApp Image 2026-03-15 at 20.15.06 (7).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 7">
-      <img src="WhatsApp Image 2026-03-15 at 20.15.06 (9).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 8">
-      <img src="WhatsApp Image 2026-03-15 at 20.33.15.jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 9">
+    <div class="reveal">
+      <p class="section-tag">Galleria</p>
+      <h2>Alcuni lavori realizzati</h2>
     </div>
 
+    <div class="gallery">
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.15.05.jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 1" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.15.06.jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 2" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.15.06 (1).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 3" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.15.06 (3).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 4" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.15.06 (4).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 5" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.15.06 (5).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 6" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.15.06 (7).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 7" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.15.06 (9).jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 8" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="WhatsApp Image 2026-03-15 at 20.33.15.jpeg" alt="Lavoro in cartongesso realizzato da Alessandro Persico 9" loading="lazy"></div>
+    </div>
   </div>
 </section>
 
 <section class="section contact-section">
-  <div class="container contact-card">
-
-    <div>
+  <div class="container contact-grid">
+    <div class="contact-card-wrapper reveal">
       <p class="section-tag">Contatti</p>
       <h2>Richiedi informazioni</h2>
       <p>
@@ -172,13 +751,15 @@
       </p>
     </div>
 
-    <div class="contact-info">
+    <div class="contact-info reveal" style="transition-delay:0.12s">
       <p><strong>Alessandro Persico</strong></p>
       <p><a href="tel:+393356375042">+39 335 637 5042</a></p>
       <p><a href="https://wa.me/393356375042" target="_blank" rel="noopener">Scrivimi su WhatsApp</a></p>
-      <p>Livorno e città limitrofe</p>
+      <p class="location">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Livorno e città limitrofe
+      </p>
     </div>
-
   </div>
 </section>
 
@@ -186,27 +767,59 @@
 
 <footer>
   <div class="container footer-content">
-
     <p><strong>Alessandro Persico Cartongesso</strong></p>
-
-    <p>
-      Lavori in cartongesso a Livorno e zone limitrofe
-    </p>
-
-    <p>
-      Partita IVA: 01093160495
-    </p>
-
-    <p>
-      © 2026 Alessandro Persico Cartongesso - Tutti i diritti riservati
-    </p>
-
-    <p>
-      <a href="privacy.html">Privacy Policy</a>
-    </p>
-
+    <div class="footer-divider"></div>
+    <p>Lavori in cartongesso a Livorno e zone limitrofe</p>
+    <p>Partita IVA: 01093160495</p>
+    <p>© 2026 Alessandro Persico Cartongesso — Tutti i diritti riservati</p>
+    <p><a href="privacy.html">Privacy Policy</a></p>
   </div>
 </footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img src="" alt="Anteprima">
+</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = lightbox.querySelector('img');
+
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 
 </body>
 </html>
